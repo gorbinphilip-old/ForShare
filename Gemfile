@@ -39,6 +39,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 
 gem 'rails-html-sanitizer', '1.0.1'
+gem 'bootstrap-sass',       '3.2.0.0'
 
 group :production do
   gem 'pg',             '0.17.1'
