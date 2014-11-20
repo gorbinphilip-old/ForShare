@@ -1,0 +1,2 @@
+module SharablesHelper
+end

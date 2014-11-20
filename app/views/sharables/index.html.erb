@@ -1,0 +1,7 @@
+<div class='row'>
+<ol>
+<% @sharables.each do |sharable| %>
+<li> <%= link_to sharable.name, sharable_path(sharable) %></li>
+<% end %>
+</ol>
+</div>
