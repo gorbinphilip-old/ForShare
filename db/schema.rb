@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121041640) do
+ActiveRecord::Schema.define(version: 20141121073403) do
+
+  create_table "oauthclients", force: true do |t|
+    t.string   "client_id"
+    t.string   "client_secret"
+    t.string   "provider"
+    t.string   "authorize_url"
+    t.string   "token_url"
+    t.string   "post_url"
+    t.string   "redirect_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sharables", force: true do |t|
     t.string   "name"
