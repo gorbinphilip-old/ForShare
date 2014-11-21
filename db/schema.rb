@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121073403) do
+ActiveRecord::Schema.define(version: 20141121145540) do
+
+  create_table "auths", force: true do |t|
+    t.string   "token"
+    t.string   "code"
+    t.integer  "user_id"
+    t.integer  "oauthclient_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "oauthclients", force: true do |t|
     t.string   "client_id"
