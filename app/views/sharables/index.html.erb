@@ -1,7 +1,12 @@
 <div class='row'>
 <ol>
+<%= will_paginate %>
 <% @sharables.each do |sharable| %>
-<li> <%= link_to sharable.name, sharable_path(sharable) %></li>
+<li> <%= link_to sharable.name, sharable_path(sharable) %>
+    | <%= link_to "delete", sharable, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+</li>
 <% end %>
+<%= will_paginate %>
 </ol>
 </div>

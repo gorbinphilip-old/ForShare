@@ -11,10 +11,7 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   resources :users
   resources :sharables
-
-  get 'oauthclients' => 'oauthclients#index'
-  get 'oauthclients/new' => 'oauthclients#new'
-  post 'oauthclients' => 'oauthclients#create'
+  resources :oauthclients
 
   root 'static_pages#home'
 

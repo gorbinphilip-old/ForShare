@@ -1,0 +1,12 @@
+<div class='row'>
+<ol>
+<%= will_paginate %>
+<% @oauthclients.each do |oauthclient| %>
+<li> <%= link_to oauthclient.provider, oauthclient_path(oauthclient) %>
+    | <%= link_to "delete", oauthclient, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+</li>
+<% end %>
+<%= will_paginate %>
+</ol>
+</div>

@@ -11,9 +11,9 @@ class SharablesController < ApplicationController
   def index
     @user = current_user
     if @user.admin?
-      @sharables=Sharable.all
+      @sharables=Sharable.paginate(page: params[:page])
     else
-      @sharables = @user.sharables
+      @sharables = @user.sharables.paginate(page: params[:page])
     end
   end
 

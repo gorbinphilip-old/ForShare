@@ -1,0 +1,33 @@
+<p>
+  <strong>Provider:</strong>
+  <%= @oauthclient.provider %>
+</p>
+
+<p>
+  <strong>Client id:</strong>
+  <%= @oauthclient.client_id %>
+</p>
+
+<p>
+  <strong>Authorization url:</strong>
+  <%= @oauthclient.authorize_url %>
+</p>
+
+<p>
+  <strong>Access Token url:</strong>
+  <%= @oauthclient.token_url %>
+</p>
+
+<p>
+  <strong>Post url:</strong>
+  <%= @oauthclient.post_url %>
+</p>
+
+<p>
+  <strong>Redirect url:</strong>
+  <%= @oauthclient.redirect_url %>
+</p>
+
+
+<%= link_to 'Edit', edit_oauthclient_path(@oauthclient) %> |
+<%= link_to 'Back', oauthclients_path %>
