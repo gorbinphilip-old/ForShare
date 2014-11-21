@@ -2,8 +2,11 @@
   <h1>Welcome to the ForShare</h1>
 
   <h2>
-    This is the home page for the ForShare application.
+     😃 Sharing made Simple 😃
   </h2>
-
+  <% if logged_in? %>
+    <%= link_to "Explore!", sharables_path, class: "btn btn-lg btn-primary" %>
+  <% else %>
   <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+<% end %>
 </div>

@@ -1,10 +1,14 @@
 class OauthclientsController < ApplicationController
 
   before_action :logged_in_user
-  before_action :admin_user, only: [:new, :create]
+  before_action :admin_user, only: [:new, :create, :index]
 
   def new
     @oauthclient=Oauthclient.new
+  end
+
+  def index
+    @oauthclients=Oauthclient.all
   end
 
   def create

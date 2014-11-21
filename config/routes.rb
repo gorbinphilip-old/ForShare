@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sharables
 
+  get 'oauthclients' => 'oauthclients#index'
   get 'oauthclients/new' => 'oauthclients#new'
   post 'oauthclients' => 'oauthclients#create'
 
