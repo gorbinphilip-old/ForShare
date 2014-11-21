@@ -1,0 +1,43 @@
+<% provide(:title, 'New OAuthClient') %>
+<h1>OAuthClient</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@oauthclient) do |f| %>
+  <% if @oauthclient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@oauthclient.errors.count, "error") %> prohibited this file from being saved:</h2>
+
+      <ul>
+      <% @oauthclient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <%= f.label :provider %>
+      <%= f.text_field :provider, class: 'form-control' %>
+
+      <%= f.label :client_id, 'Client id' %>
+      <%= f.text_field :client_id, class: 'form-control' %>
+
+      <%= f.label :client_secret, 'Client secret' %>
+      <%= f.password_field :client_secret, class: 'form-control' %>
+
+      <%= f.label :authorize_url %>
+      <%= f.text_field :authorize_url, class: 'form-control' %>
+
+      <%= f.label :token_url %>
+      <%= f.text_field :token_url, class: 'form-control' %>
+
+      <%= f.label :post_url %>
+      <%= f.text_field :post_url, class: 'form-control' %>
+
+      <%= f.label :redirect_url %>
+      <%= f.text_field :redirect_url, class: 'form-control' %>
+
+      <%= f.submit "Add OAuthClient", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

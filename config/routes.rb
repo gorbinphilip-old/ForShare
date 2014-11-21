@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :users
   resources :sharables
 
+  get 'oauthclients/new' => 'oauthclients#new'
+  post 'oauthclients' => 'oauthclients#create'
+
   root 'static_pages#home'
 
 
