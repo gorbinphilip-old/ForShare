@@ -3,8 +3,12 @@
 <%= will_paginate %>
 <% @oauthclients.each do |oauthclient| %>
 <li> <%= link_to oauthclient.provider, oauthclient_path(oauthclient) %>
+<% if @current_user.admin? %>
     | <%= link_to "delete", oauthclient, method: :delete,
                                   data: { confirm: "You sure?" } %>
+<% else %>
+ | <%= link_to 'Authorize', "#{root_path}authorize/#{oauthclient.id}" %>
+<% end %>
 </li>
 <% end %>
 <%= will_paginate %>

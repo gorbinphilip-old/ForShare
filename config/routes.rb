@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :sharables
   resources :oauthclients
 
+  get 'authorize/:id' => 'auth#authorize'
+  get 'callback' => 'auth#callback'
+  get 'share/:id' => 'auth#share'
+
   root 'static_pages#home'
 
 

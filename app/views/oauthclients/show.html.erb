@@ -28,6 +28,7 @@
   <%= @oauthclient.redirect_url %>
 </p>
 
-
+ <% if current_user.admin? %>
 <%= link_to 'Edit', edit_oauthclient_path(@oauthclient) %> |
+<% end %>
 <%= link_to 'Back', oauthclients_path %>
