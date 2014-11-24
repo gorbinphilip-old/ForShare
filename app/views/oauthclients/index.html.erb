@@ -1,4 +1,7 @@
 <div class='row'>
+<% if @current_user.admin? %>
+<%= button_to "New", new_oauthclient_path, :method => "get", style:'width:50px;' %>
+<% end %>
 <ol>
 <%= will_paginate %>
 <% @oauthclients.each do |oauthclient| %>
