@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
   get 'authorize/:id' => 'auth#authorize'
   get 'callback' => 'auth#callback'
-  get 'share/:id' => 'auth#share'
+  post 'share' => 'auth#share'
+  get 'pack' => 'auth#pack'
 
   root 'static_pages#home'
 

@@ -1,5 +1,7 @@
 class AuthController < ApplicationController
 
+  before_action :logged_in_user
+
   def authorize
     @oauthclient=Oauthclient.find(params[:id])
     session[:oauth_id]=@oauthclient.id
@@ -44,8 +46,17 @@ class AuthController < ApplicationController
     end
   end
 
-  def share
+  def pack
+    @user = current_user
+    @sharables = @user.sharables
     
+  end
+
+  def share
+    puts params
+    #do something :(
+    flash[:success] = "Shared successfully"
+    redirect_to root_url
   end
 
 end

@@ -1,4 +1,5 @@
 <div class='row'>
+<%= button_to "New", new_sharable_path, :method => "get", style:'width:50px;' %>
 <ol>
 <%= will_paginate %>
 <% @sharables.each do |sharable| %>
