@@ -18,8 +18,7 @@ class AuthController < ApplicationController
       redirect_to root_url
     else
       @oauthclient = Oauthclient.find(session[:oauth_id])
-      @auth=Auth.find_by(user_id:@user.id, oauthclient_id:@oauthclient.id)
-      if @auth
+      if @auth=Auth.find_by(user_id:@user.id, oauthclient_id:@oauthclient.id)
         @auth.update_attributes(code: params[:code])
       else
         @auth = Auth.new(user_id:@user.id, oauthclient_id:@oauthclient.id, code: params[:code])
@@ -33,7 +32,12 @@ class AuthController < ApplicationController
   def get_token
     require 'net/http'
     require 'json'
-    response = Net::HTTP.get_response("#{@oauthclient.token_url}?clent_id=#{@oauthclient.client_id}&client_secret=#{@oauthclient.client_secret}&redirect_uri=#{@oauthclient.redirect_url}& code=#{@auth.code}") #### security issue.. try post
+
+    uri = URI(@oauthclient.token_url)
+    get_token_params = { :client_id => @oauthclient.client_id, :client_secret => @oauthclient.client_secret, :redirect_uri => @oauthclient.redirect_url, :code => @auth.code }
+    uri.query = URI.encode_www_form(get_token_params)
+    response = Net::HTTP.get_response(uri)
+
     puts response.body ###########
     token=JSON.parse(response.body)['access_token']
     if not token.blank?
@@ -67,7 +71,7 @@ class AuthController < ApplicationController
       add_params_names=params[:param_names]
       add_params_values=params[:param_values]
       add_params={}
-      add_params[@sharable.name]= UploadIO.new(File.new(@sharable.file.path), @sharable.file_content_type, @sharable.name)
+      add_params[@sharable.name]= UploadIO.new(File.new(Rails.root+@sharable.file.path), @sharable.file_content_type, @sharable.name)
       if not add_params_names.blank?
         add_params_values.reverse!
         add_params_names.each do |param_name|
@@ -77,13 +81,14 @@ class AuthController < ApplicationController
           end
         end
       end
-      uri = URI("#{@oauthclient.post_url}?access_token=#{@auth.token}")
+      uri = URI(@oauthclient.post_url)
+      uri.query = URI.encode_www_form({:access_token => @auth.token})
       req = Net::HTTP::Post::Multipart.new uri, add_params
       res = Net::HTTP.start(uri.host, uri.port) do |http|
         http.request(req)
       end
       puts res.body ###########
-      if JSON.parse(res.body)['success']==True
+      if JSON.parse(res.body)['success']==true
         flash[:success] = "Shared successfully"
       else
         flash[:danger] = "Sharing failed"
